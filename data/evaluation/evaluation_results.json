@@ -1,0 +1,219 @@
+{
+  "summary": {
+    "questions": 10,
+    "average_token_f1": 0.322117307979377,
+    "average_exact_match": 0.0
+  },
+  "results": [
+    {
+      "question": "What is supervised learning?",
+      "reference_answer": "Supervised learning is a type of machine learning where a model learns from labelled training data.",
+      "generated_answer": "According to the provided context in the super-cheatsheet-machine-learning.pdf, supervised learning is defined as:\n\n\"Given a set of data points{x(1),...,x(m)}associated to a set of outcomes{y(1),...,y(m)}, we want to build a classiﬁer that learns how to predicty from x.\"\n\nThis definition is found in the section \"1.1 Introduction to Supervised Learning\" (Chunk: 0).",
+      "token_f1": 0.31034482758620696,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 0
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 4
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 20
+        }
+      ]
+    },
+    {
+      "question": "What is unsupervised learning?",
+      "reference_answer": "Unsupervised learning is a type of machine learning that learns patterns from data without labelled target values.",
+      "generated_answer": "According to the provided context, in Chunk 2 of the super-cheatsheet-machine-learning.pdf document, unsupervised learning is defined as:\n\n\"The goal of unsupervised learning is to find hidden patterns in unlabeled data {x(1),...,x(m)}.\"\n\nThis definition is stated in the Introduction to Unsupervised Learning section (Chunk 2, 2.1).",
+      "token_f1": 0.2857142857142857,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 17
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 20
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 1
+        }
+      ]
+    },
+    {
+      "question": "What is reinforcement learning?",
+      "reference_answer": "Reinforcement learning is a machine learning approach where an agent learns by interacting with an environment and receiving rewards or penalties.",
+      "generated_answer": "Reinforcement learning is the goal of an agent to learn how to evolve in an environment. (Source: super-cheatsheet-machine-learning.pdf, Chunk 3.4)\n\nIn more detail, the goal of reinforcement learning is for an agent to learn how to take actions in a given environment to maximize a reward function R: S × A → R or R: S → R. (Source: super-cheatsheet-machine-learning.pdf, Chunk 3.4)",
+      "token_f1": 0.3333333333333333,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 28
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 2
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 30
+        }
+      ]
+    },
+    {
+      "question": "What is classification?",
+      "reference_answer": "Classification is a supervised learning task in which a model predicts a discrete class or category.",
+      "generated_answer": "According to the provided context, specifically in Chunk 8 of the super-cheatsheet-machine-learning.pdf, classification is not explicitly defined. However, in the same chunk, the Widrow-Hoff learning rule and Locally Weighted Regression are mentioned, which are related to machine learning concepts.\n\nHowever, in Chunk 1.3.2 of the same document, the Logistic Regression section mentions that logistic regression is used for classification when the target variable is binary. Additionally, the Softmax regression section in Chunk 51 mentions that softmax regression, also called a multiclass logistic regression, is used to generalize logistic regression when there are more than 2 outcome classes.\n\nTherefore, based on the provided context, classification can be inferred to be a process or method used in machine learning, specifically in logistic regression and softmax regression, for binary and multiclass classification tasks, respectively.\n\nSource: super-cheatsheet-machine-learning.pdf, Chunk 8, and Chunk 51.",
+      "token_f1": 0.16091954022988506,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 8
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 1
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 51
+        }
+      ]
+    },
+    {
+      "question": "What is regression?",
+      "reference_answer": "Regression is a supervised learning task in which a model predicts a continuous numerical value.",
+      "generated_answer": "According to the provided context, specifically in Chunk 10 of the super-cheatsheet-machine-learning.pdf, regression is defined as:\n\n\"Regression - Stanford University 11 Fall 2018 CS 229 – Machine Learning Shervine Amidi & Afshine Amidi\n\nGiven a set of data points{x(1),...,x(m)}associated to a set of outcomes{y(1),...,y(m)}, we want to build a classiﬁer that learns how to predicty from x.\n\nÎ Type of prediction– The different types of predictive models are summed up in the table below:\nRegression\nClassiﬁer\nOutcome\nContinuous Class Examples\nLinear regression\"\n\nIn this context, regression is a type of predictive model that aims to predict a continuous outcome from input data.",
+      "token_f1": 0.16666666666666666,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 3
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 36
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 4
+        }
+      ]
+    },
+    {
+      "question": "What is overfitting?",
+      "reference_answer": "Overfitting occurs when a machine learning model learns the training data too closely and performs poorly on unseen data.",
+      "generated_answer": "Overfitting is a phenomenon where a model is too complex and fits the training data too closely, resulting in high training error, but generalizes poorly to new, unseen data, resulting in a high test error. (Source: super-cheatsheet-machine-learning.pdf, Chunk 36)\n\nIn particular, overfitting is characterized by a high bias (difference between expected prediction and correct model) and high variance (variability of model prediction). (Source: super-cheatsheet-machine-learning.pdf, Chunk 36)\n\nThis occurs when the model is too complex and captures the noise in the training data, rather than the underlying patterns. (Source: super-cheatsheet-machine-learning.pdf, Chunk 36)\n\nSymptoms of overfitting include high training error that is much higher than the test error, and high variance. (Source: super-cheatsheet-machine-learning.pdf, Chunk 36)",
+      "token_f1": 0.38961038961038963,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 36
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 51
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 8
+        }
+      ]
+    },
+    {
+      "question": "What is underfitting?",
+      "reference_answer": "Underfitting occurs when a model is too simple to capture the underlying patterns in the training data.",
+      "generated_answer": "According to the provided context, underfitting is described as a situation where \"The simpler the model, the higher the bias, and the more complex the model, the higher the variance.\" (Source: super-cheatsheet-machine-learning.pdf, Chunk: 36)\n\nIn other words, underfitting occurs when a model is too simple to capture the underlying patterns in the data, resulting in high bias and low variance.",
+      "token_f1": 0.5172413793103449,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 36
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 51
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 34
+        }
+      ]
+    },
+    {
+      "question": "What is a decision tree?",
+      "reference_answer": "A decision tree is a supervised learning algorithm that makes predictions using a sequence of decision rules represented as a tree.",
+      "generated_answer": "According to the provided context, a decision tree is a type of tree-based technique that can be represented as binary trees. They are highly interpretable, making them a popular algorithm. (Source: super-cheatsheet-machine-learning.pdf, Chunk: 13)",
+      "token_f1": 0.3846153846153846,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 14
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 13
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 1
+        }
+      ]
+    },
+    {
+      "question": "What are random forests?",
+      "reference_answer": "Random forests are ensemble learning algorithms that combine multiple decision trees to make predictions.",
+      "generated_answer": "According to the provided context, specifically Chunk 14 of the super-cheatsheet-machine-learning.pdf, random forests are a type of ensemble method. They are a tree-based technique that uses a high number of decision trees built out of randomly selected sets of features. Unlike simple decision trees, random forests are highly uninterpretable but are known for their generally good performance, making them a popular algorithm.",
+      "token_f1": 0.27272727272727276,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 14
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 13
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 45
+        }
+      ]
+    },
+    {
+      "question": "What are neural networks?",
+      "reference_answer": "Neural networks are machine learning models inspired by biological neurons and composed of interconnected layers of artificial neurons.",
+      "generated_answer": "According to the provided context in the super-cheatsheet-machine-learning.pdf, neural networks are a class of models that are built with layers, commonly used types of neural networks include convolutional and recurrent neural networks.",
+      "token_f1": 0.4,
+      "exact_match": 0.0,
+      "sources": [
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 27
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 2
+        },
+        {
+          "document_name": "super-cheatsheet-machine-learning.pdf",
+          "chunk_id": 24
+        }
+      ]
+    }
+  ]
+}

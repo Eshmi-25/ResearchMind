@@ -1,12 +1,8 @@
 # ResearchMind
 
-ResearchMind is a production-style AI research assistant built to explore
-retrieval-augmented generation (RAG), information retrieval, embeddings,
-reranking, grounded generation, and evaluation.
+ResearchMind is a production-style AI research assistant built to explore retrieval-augmented generation (RAG), information retrieval, embeddings,reranking, grounded generation, and evaluation.
 
 ## Project Goals
-
-- Learn the mathematical foundations behind semantic search
 - Build a complete RAG pipeline
 - Compare dense, sparse, and hybrid retrieval
 - Experiment with reranking
@@ -21,11 +17,90 @@ reranking, grounded generation, and evaluation.
 
 ## Architecture
 
-Coming soon.
+                         ┌──────────────────────┐
+                         │       FRONTEND       │
+                         │                      │
+                         │  Upload PDF          │
+                         │  Ask Question        │
+                         │  View Answer         │
+                         │  View Citations      │
+                         │  View Sources        │
+                         └──────────┬───────────┘
+                                    │
+                                    │ HTTP
+                                    ▼
+                         ┌──────────────────────┐
+                         │      FASTAPI         │
+                         │       BACKEND        │
+                         │                      │
+                         │ /documents/upload    │
+                         │ /documents           │
+                         │ /query               │
+                         │ /health              │
+                         │ /metrics             │
+                         └──────────┬───────────┘
+                                    │
+                ┌───────────────────┴───────────────────┐
+                │                                       │
+                ▼                                       ▼
+       ┌─────────────────┐                    ┌─────────────────┐
+       │ DOCUMENT        │                    │ QUERY           │
+       │ INGESTION       │                    │ PIPELINE        │
+       │                 │                    │                 │
+       │ PDF             │                    │ User Query      │
+       │ ↓               │                    │ ↓               │
+       │ Extraction      │                    │ Query Embedding │
+       │ ↓               │                    │ ↓               │
+       │ Cleaning        │                    │ Dense Retrieval │
+       │ ↓               │                    │ +               │
+       │ Metadata        │                    │ Sparse Retrieval│
+       │ ↓               │                    │ ↓               │
+       │ Chunking        │                    │ Hybrid          │
+       └────────┬────────┘                    │ Retrieval       │
+                │                             │ ↓               │
+                ▼                             │ Reranking       │
+       ┌─────────────────┐                    │ ↓               │
+       │   EMBEDDING     │                    │ Top-K Context   │
+       │     MODEL       │                    └────────┬────────┘
+       └────────┬────────┘                             │
+                │                                      ▼
+                ▼                              ┌─────────────────┐
+       ┌─────────────────┐                     │      LLM        │
+       │  VECTOR STORE   │                     │                 │
+       │                 │                     │ Prompt +        │
+       │ FAISS initially │                     │ Evidence        │
+       │                 │                     │ ↓               │
+       └─────────────────┘                     │ Answer          │
+                                               └────────┬────────┘
+                                                        │
+                                                        ▼
+                                               ┌─────────────────┐
+                                               │ CITATION +      │
+                                               │ GROUNDING       │
+                                               │ VERIFICATION    │
+                                               └────────┬────────┘
+                                                        │
+                                                        ▼
+                                               ┌─────────────────┐
+                                               │     RESPONSE    │
+                                               │ Answer          │
+                                               │ Sources         │
+                                               │ Citations       │
+                                               │ Grounding info  │
+                                               └─────────────────┘
+
 
 ## Tech Stack
 
-Coming soon.
+FastAPI
+Uvicorn
+
+
+Python
+NumPy
+Pydantic
+pytest
+Git
 
 ## Evaluation
 

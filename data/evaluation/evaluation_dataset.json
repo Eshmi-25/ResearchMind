@@ -1,0 +1,52 @@
+[
+  {
+    "question": "What is supervised learning?",
+    "answer": "Supervised learning is a type of machine learning where a model learns from labelled training data.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is unsupervised learning?",
+    "answer": "Unsupervised learning is a type of machine learning that learns patterns from data without labelled target values.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is reinforcement learning?",
+    "answer": "Reinforcement learning is a machine learning approach where an agent learns by interacting with an environment and receiving rewards or penalties.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is classification?",
+    "answer": "Classification is a supervised learning task in which a model predicts a discrete class or category.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is regression?",
+    "answer": "Regression is a supervised learning task in which a model predicts a continuous numerical value.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is overfitting?",
+    "answer": "Overfitting occurs when a machine learning model learns the training data too closely and performs poorly on unseen data.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is underfitting?",
+    "answer": "Underfitting occurs when a model is too simple to capture the underlying patterns in the training data.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What is a decision tree?",
+    "answer": "A decision tree is a supervised learning algorithm that makes predictions using a sequence of decision rules represented as a tree.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What are random forests?",
+    "answer": "Random forests are ensemble learning algorithms that combine multiple decision trees to make predictions.",
+    "relevant_chunks": []
+  },
+  {
+    "question": "What are neural networks?",
+    "answer": "Neural networks are machine learning models inspired by biological neurons and composed of interconnected layers of artificial neurons.",
+    "relevant_chunks": []
+  }
+]

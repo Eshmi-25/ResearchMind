@@ -1,21 +1,30 @@
 from fastapi import FastAPI
-
-from app.api.routes_documents import router as documents_router
+from app.generation.llm import generate_response
+from app.api.routes_query import router as query_router
 
 app = FastAPI(
-    title="ResearchMind",
-    description="AI-powered research assistant",
-    version="0.1.0"
+    title="ResearchMind API",
+    description="Production-grade AI Research Assistant",
+    version="0.1.0",
 )
-
-app.include_router(documents_router)
-
-
-@app.get("/")
-def root():
-    return {"message": "ResearchMind is running!"}
 
 
 @app.get("/health")
-def health():
+def health_check():
     return {"status": "healthy"}
+
+
+@app.get("/generate")
+def generate():
+    response = generate_response(
+        "Explain what retrieval augmented generation is in 3 sentences."
+    )
+
+    return {
+        "response": response
+    }
+
+
+app.include_router(
+    query_router
+)

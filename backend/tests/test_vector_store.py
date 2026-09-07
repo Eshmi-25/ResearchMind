@@ -12,12 +12,21 @@ def test_vector_store():
     ]
 
     documents = [
-        "Machine learning",
-        "Computer networks",
-        "Supervised machine learning",
+        {
+            "text": "Machine learning"
+        },
+        {
+            "text": "Computer networks"
+        },
+        {
+            "text": "Supervised machine learning"
+        },
     ]
 
-    store.add(embeddings, documents)
+    store.add(
+        embeddings,
+        documents
+    )
 
     results = store.search(
         [1.0, 0.0, 0.0],
@@ -25,4 +34,7 @@ def test_vector_store():
     )
 
     assert len(results) == 2
-    assert results[0]["document"] == "Machine learning"
+
+    assert results[0]["text"] == "Machine learning"
+
+    assert "score" in results[0]
