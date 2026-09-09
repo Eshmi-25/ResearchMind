@@ -1,17 +1,18 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from app.schemas.query import (
     QueryRequest,
     QueryResponse
 )
 
-from app.database.vector_store import VectorStore
 from app.retrieval.hybrid_retriever import HybridRetriever
 from app.retrieval.reranker import Reranker
 
 from app.generation.prompt import build_rag_prompt
 from app.generation.llm import generate_response
 from app.generation.citation import extract_citations
+
+from app.core import state
 
 
 router = APIRouter(
@@ -20,33 +21,16 @@ router = APIRouter(
 )
 
 
-VECTOR_STORE_PATH = (
-    "data/processed/vector_store"
-)
-
-
-# Load vector store once when the API starts
-vector_store = VectorStore(
-    dimension=384
-)
-
-vector_store.load(
-    VECTOR_STORE_PATH
-)
-
-
-# Documents stored alongside FAISS
-documents = vector_store.documents
-
-
-retriever = HybridRetriever(
-    documents=documents,
-    vector_store=vector_store
-)
-
+# --------------------------------------------------
+# Reranker
+# --------------------------------------------------
 
 reranker = Reranker()
 
+
+# --------------------------------------------------
+# Query
+# --------------------------------------------------
 
 @router.post(
     "",
@@ -56,34 +40,132 @@ def query(
     request: QueryRequest
 ):
 
-    # 1. Hybrid retrieval
-    retrieved_documents = retriever.search(
-        request.query,
-        top_k=request.top_k
-    )
+    # --------------------------------------------------
+    # Check documents
+    # --------------------------------------------------
 
-    # 2. Reranking
+    if not state.vector_store.documents:
+
+        raise HTTPException(
+            status_code=400,
+            detail="No documents have been uploaded."
+        )
+
+
+    # --------------------------------------------------
+    # Determine documents to search
+    # --------------------------------------------------
+
+    if request.selected_documents:
+
+        selected_documents = [
+            document
+            for document in state.vector_store.documents
+            if document["document_name"]
+            in request.selected_documents
+        ]
+
+        if not selected_documents:
+
+            raise HTTPException(
+                status_code=400,
+                detail="None of the selected documents were found."
+            )
+
+        # --------------------------------------------------
+        # Create a temporary vector store containing
+        # ONLY selected documents
+        # --------------------------------------------------
+
+        selected_store = state.vector_store.create_filtered_store(
+            request.selected_documents
+        )
+
+        if not selected_store.documents:
+
+            raise HTTPException(
+                status_code=400,
+                detail="No chunks found for selected documents."
+            )
+
+        filtered_retriever = HybridRetriever(
+            documents=selected_store.documents,
+            vector_store=selected_store
+        )
+
+        retrieved_documents = filtered_retriever.search(
+            request.query,
+            top_k=request.top_k
+        )
+
+    else:
+
+        # --------------------------------------------------
+        # Search all documents
+        # --------------------------------------------------
+
+        if state.retriever is None:
+
+            state.rebuild_retriever()
+
+        if state.retriever is None:
+
+            raise HTTPException(
+                status_code=400,
+                detail="Retriever is not available."
+            )
+
+        retrieved_documents = state.retriever.search(
+            request.query,
+            top_k=request.top_k
+        )
+
+
+    # --------------------------------------------------
+    # Reranking
+    # --------------------------------------------------
+
     reranked_documents = reranker.rerank(
         request.query,
         retrieved_documents,
-        top_k=min(3, request.top_k)
+        top_k=min(
+            3,
+            request.top_k
+        )
     )
 
-    # 3. Build RAG prompt
+
+    # --------------------------------------------------
+    # Build RAG prompt
+    # --------------------------------------------------
+
     prompt = build_rag_prompt(
         request.query,
         reranked_documents
     )
 
-    # 4. Generate answer
+
+    # --------------------------------------------------
+    # Generate answer
+    # --------------------------------------------------
+
     answer = generate_response(
         prompt
     )
 
-    # 5. Extract citations
+
+    # --------------------------------------------------
+    # Extract citations
+    # --------------------------------------------------
+
     sources = extract_citations(
         reranked_documents
     )
+
+
+    # --------------------------------------------------
+    # Return response
+    # --------------------------------------------------
 
     return QueryResponse(
         answer=answer,

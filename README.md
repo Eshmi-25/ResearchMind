@@ -2,6 +2,8 @@
 
 ResearchMind is a production-style AI research assistant built to explore retrieval-augmented generation (RAG), information retrieval, embeddings,reranking, grounded generation, and evaluation.
 
+ uvicorn app.main:app --reload --app-dir backend
+
 ## Project Goals
 - Build a complete RAG pipeline
 - Compare dense, sparse, and hybrid retrieval
