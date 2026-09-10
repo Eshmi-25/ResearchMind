@@ -8,7 +8,14 @@ from app.embeddings.embedder import Embedder
 from app.database.vector_store import VectorStore
 
 
-VECTOR_STORE_PATH = r"C:\Users\sumit\OneDrive\Desktop\ResearchMind\data\processed\vector_store"
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+VECTOR_STORE_PATH = (
+    PROJECT_ROOT
+    / "data"
+    / "processed"
+    / "vector_store"
+)
 
 
 class DocumentIndexer:
@@ -24,18 +31,14 @@ class DocumentIndexer:
             dimension=embedding_dimension
         )
 
-        index_path = Path(
-            VECTOR_STORE_PATH
-        ) / "index.faiss"
+        index_path = VECTOR_STORE_PATH / "index.faiss"
 
-        documents_path = Path(
-            VECTOR_STORE_PATH
-        ) / "documents.pkl"
+        documents_path = VECTOR_STORE_PATH / "documents.pkl"
 
         if index_path.exists() and documents_path.exists():
 
             self.vector_store.load(
-                VECTOR_STORE_PATH
+                str(VECTOR_STORE_PATH)
             )
 
     def index_document(self, file_path: str):
@@ -79,7 +82,7 @@ class DocumentIndexer:
         )
 
         self.vector_store.save(
-            VECTOR_STORE_PATH
+            str(VECTOR_STORE_PATH)
         )
 
         return {

@@ -1,12 +1,14 @@
 from app.ingestion.indexer import DocumentIndexer
+from pathlib import Path
 
 
-PDF_PATH = r"C:\Users\sumit\OneDrive\Desktop\ResearchMind\data\raw\super-cheatsheet-machine-learning.pdf"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PDF_PATH = PROJECT_ROOT / "data" / "uploads" / "super-cheatsheet-machine-learning.pdf"
 
 
 indexer = DocumentIndexer()
 
-result = indexer.index_document(PDF_PATH)
+result = indexer.index_document(str(PDF_PATH))
 
 print("INDEXING RESULT")
 print(result)
