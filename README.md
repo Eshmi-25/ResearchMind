@@ -114,3 +114,15 @@ Use the provided Dockerfile for backend image builds and `docker-compose.yml` fo
 - Add metrics and observability endpoints.
 - Add CI tests for API integration.
 - Add production frontend serving with static assets.
+
+## Troubleshooting
+
+- 401 errors: verify token exists and backend secret is consistent.
+- No AI response: check Ollama service, model name, or set OLLAMA_ENABLED=false.
+- Empty case list: run seed command.
+- CORS issues: verify CORS_ORIGINS includes frontend host.
+
+
+## License
+
+MIT License. See LICENSE.
