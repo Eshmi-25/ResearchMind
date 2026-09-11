@@ -109,20 +109,6 @@ function App() {
     };
   }, [latestMessage]);
 
-  const trendChips = useMemo(() => {
-    const base = ["Evidence synthesis", "Method comparison", "Citation grounding"];
-
-    if (!latestMessage?.sources?.length) {
-      return base;
-    }
-
-    const sourceNames = latestMessage.sources
-      .slice(0, 3)
-      .map((source) => toTitle(source.document_name || "Source"));
-
-    return [...base, ...sourceNames];
-  }, [latestMessage]);
-
   const loadDocuments = async () => {
     try {
       const response = await fetch(`${API_URL}/documents`);
@@ -541,22 +527,6 @@ function App() {
                           </div>
                         )}
                       </div>
-
-                      <aside className="citation-rail">
-                        <h3>Citations</h3>
-
-                        {(message.sources || []).slice(0, 4).map((source, sourceIndex) => (
-                          <div className="citation-card" key={`${source.document_name}-${sourceIndex}`}>
-                            <div className="citation-title">[{sourceIndex + 1}] {toTitle(source.document_name || "Paper")}</div>
-                            <div className="citation-meta">Chunk {source.chunk_id ?? "N/A"}</div>
-                            <p>{source.text ? `\"${source.text}\"` : "Reference excerpt unavailable."}</p>
-                          </div>
-                        ))}
-
-                        {(!message.sources || message.sources.length === 0) && (
-                          <div className="empty-small">No citations returned for this answer.</div>
-                        )}
-                      </aside>
                     </div>
                   </div>
                 );
@@ -678,13 +648,6 @@ function App() {
                   <li key={finding}>{finding}</li>
                 ))}
               </ul>
-
-              <h3>Trending Concepts</h3>
-              <div className="trend-row">
-                {trendChips.map((chip) => (
-                  <span key={chip}>{chip}</span>
-                ))}
-              </div>
 
               <h3>Generated Summary</h3>
               <p>{insights.summary}</p>

@@ -491,7 +491,6 @@ body[data-theme="dim"] .rm-app {
 
 .user-bubble p,
 .assistant-bubble p,
-.citation-card p,
 .preview-card p,
 .insight-card p {
   margin: 0;
@@ -499,9 +498,7 @@ body[data-theme="dim"] .rm-app {
 }
 
 .assistant-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.46fr);
-  gap: 10px;
+  display: block;
 }
 
 .assistant-bubble {
@@ -518,7 +515,6 @@ body[data-theme="dim"] .rm-app {
 
 .doc-chip-row,
 .source-chip-row,
-.trend-row,
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -528,7 +524,6 @@ body[data-theme="dim"] .rm-app {
 
 .doc-chip,
 .source-chip,
-.trend-row span,
 .tag-row span {
   padding: 4px 8px;
   border-radius: 999px;
@@ -542,55 +537,15 @@ body[data-theme="dim"] .rm-app {
 }
 
 .source-chip,
-.trend-row span,
 .tag-row span {
   background: rgba(37, 99, 235, 0.1);
   color: #1d4ed8;
 }
-
-.citation-rail {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.86);
-  display: grid;
-  gap: 8px;
-  align-content: start;
-}
-
-.citation-rail h3,
 .workspace-card h2,
 .insight-card h2,
 .preview-card h3,
 .workspace-empty h3 {
   margin: 0;
-}
-
-.citation-rail h3 {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-}
-
-.citation-card {
-  padding: 9px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.96);
-}
-
-.citation-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-}
-
-.citation-meta {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  margin-bottom: 5px;
 }
 
 .workspace-card,
